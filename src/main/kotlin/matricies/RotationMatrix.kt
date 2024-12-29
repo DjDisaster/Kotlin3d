@@ -1,4 +1,4 @@
-package org.example.matricies
+package matricies
 
 import kotlin.math.cos
 import kotlin.math.sin

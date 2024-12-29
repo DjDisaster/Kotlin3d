@@ -1,6 +1,5 @@
-package org.example
 
-import org.example.matricies.*
+import matricies.*
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Polygon
@@ -58,6 +57,7 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
         val cameraPosition = Vector(0.0,0.0,0.0)
 
         for (v in matricies) {
+
             val matrix = v.getMatrix()
 
             for (v2 in matrix) {
@@ -90,6 +90,7 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
                     val v3 = tri[i]
                     points[i] = multiplyMatrix(v3, projectionMatrix)
                     points[i].multiply(500.0)
+
 
                     points[i].x += 600
                     points[i].y += 400

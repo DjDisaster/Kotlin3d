@@ -1,7 +1,6 @@
-package org.example.matricies
+package matricies
 
-import org.example.Vector
-
+import Vector
 
 
 class Cube(xOffset: Double, yOffset: Double, zOffset: Double, scale: Double) : Matrix {

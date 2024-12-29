@@ -1,6 +1,4 @@
-package org.example
-
-import org.example.matricies.Cube
+import matricies.Cube
 import java.awt.Color
 import java.awt.Toolkit
 import java.util.*

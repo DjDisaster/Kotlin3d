@@ -1,6 +1,6 @@
-package org.example.matricies
+package matricies
 
-import org.example.Vector
+import Vector
 
 fun multiplyMatrix(v1: Vector, matrix: Array<DoubleArray>): Vector {
     val returnVector = Vector(0.0,0.0,0.0)
