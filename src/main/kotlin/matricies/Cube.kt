@@ -4,7 +4,7 @@ import org.example.Vector
 
 
 
-class Cube(var xOffset: Double, var yOffset: Double, var zOffset: Double, var scale: Double) : Matrix {
+class Cube(xOffset: Double, yOffset: Double, zOffset: Double, scale: Double) : Matrix {
 
     private val matrix = arrayOf(
         arrayOf(
@@ -73,20 +73,20 @@ class Cube(var xOffset: Double, var yOffset: Double, var zOffset: Double, var sc
     init {
         for (v in matrix) {
             for (v2 in v) {
-                v2.x *= scale;
-                v2.y *= scale;
-                v2.z *= scale;
+                v2.x *= scale
+                v2.y *= scale
+                v2.z *= scale
 
-                v2.x += xOffset;
-                v2.y += yOffset;
-                v2.z += zOffset;
+                v2.x += xOffset
+                v2.y += yOffset
+                v2.z += zOffset
 
             }
         }
     }
 
     override fun getMatrix(): Array<Array<Vector>> {
-        return matrix;
+        return matrix
     }
 
 
