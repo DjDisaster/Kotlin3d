@@ -18,6 +18,9 @@ class OBJReader(file: File) {
         val verts = ArrayList<Vector>()
 
         for (line in lines) {
+            if (line.length == 0) {
+                continue;
+            }
             if (line[0] == 'v') {
                 val split = line.substring(2).split(" ")
                 val x = split[0].toDouble()

@@ -5,7 +5,6 @@ import java.awt.Graphics
 import java.awt.Polygon
 import javax.swing.JPanel
 import kotlin.math.cos
-import kotlin.math.floor
 import kotlin.math.sin
 import kotlin.math.tan
 
@@ -66,7 +65,7 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
                 for (index in tri.indices) {
                     tri[index] = multiplyMatrix(tri[index], rotationX(theta))
                     tri[index] = multiplyMatrix(tri[index], rotationZ(theta))
-                    tri[index] = multiplyMatrix(tri[index], rotationY(theta))
+                    //tri[index] = multiplyMatrix(tri[index], rotationY(theta))
                     tri[index].z += 10
                 }
 
@@ -89,7 +88,7 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
                 for (i in tri.indices) {
                     val v3 = tri[i]
                     points[i] = multiplyMatrix(v3, projectionMatrix)
-                    points[i].multiply(400.0)
+                    points[i].multiply(1400.0)
 
 
                     points[i].x += 600
@@ -104,6 +103,7 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
         println("Triangles: $triangles Culled: $culled")
     }
 
+    var highest = 0;
 
 
     private fun drawTriangle(g: Graphics?, v1: Vector, v2: Vector, v3: Vector) {
@@ -112,18 +112,56 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
             return
         }
 
+        val x1 = v1.x.toInt();
+        val x2 = v2.x.toInt();
+        val x3 = v3.x.toInt()
+
+        val y1 = v1.y.toInt();
+        val y2 = v2.y.toInt();
+        val y3 = v3.y.toInt();
+
         val triangle = Polygon()
-        triangle.addPoint(floor(v2.x).toInt(), floor(v2.y).toInt())
-        triangle.addPoint(floor(v3.x).toInt(), floor(v3.y).toInt())
-        triangle.addPoint(floor(v1.x).toInt(), floor(v1.y).toInt())
+        triangle.addPoint(x1, y1)
+        triangle.addPoint(x2, y2)
+        triangle.addPoint(x3, y3)
+
+        //println("WIDTH:" + width);
+        //println("HEIGHT: " + height)
+        //println("X1: " + x1 + " Y1: " + y1)
+        //println("X2: " + x1 + " Y2: " + y2)
+        //println("X3: " + x1 + " Y3: " + y3)
+
+        if (x1 > highest) {
+            highest = x1;
+        }
+
+        if (x2 > highest) {
+            highest = x2
+        }
+
+        if (x3 > highest) {
+            highest = x3;
+        }
+       // println("HIGH: " + highest)
+
+
+        if ((x1 < 0 && x2 < 0 && x3 < 0) ||
+            (y1 < 0 && y2 < 0 && y3 < 0) ||
+            (x1 > width || x2 > width || x3 > width) ||
+            (y1 > height || y2 > height || y3 > height)) {
+            //println("SKIP")
+            return
+        }
+
+
 
         g.color = Color(255,0,0)
         g.fillPolygon(triangle)
 
         g.color = Color(255,255,255)
-        g.drawLine(floor(v1.x).toInt(), floor(v1.y).toInt(), floor(v2.x).toInt(), floor(v2.y).toInt())
-        g.drawLine(floor(v2.x).toInt(), floor(v2.y).toInt(), floor(v3.x).toInt(), floor(v3.y).toInt())
-        g.drawLine(floor(v3.x).toInt(), floor(v3.y).toInt(), floor(v1.x).toInt(), floor(v1.y).toInt())
+        g.drawLine(x1, y1, x2, y2)
+        g.drawLine(x2, y2, x3, y3)
+        g.drawLine(x3, y3, x1, y1)
     }
 
 

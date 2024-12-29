@@ -17,7 +17,7 @@ fun main() {
 
     frame.background = Color.BLACK
 
-    val obj = {}.javaClass.getResource("axis.obj")
+    val obj = {}.javaClass.getResource("teapot.obj")
     if (obj == null) {
         println("OBJ was null.")
         return
@@ -31,6 +31,8 @@ fun main() {
         reader.tris.toTypedArray()
         //arrayOf(Triangle(-0.5,-0.5,-0.5, 1.0))
     )
+
+    drawPanel.setSize(dimensions.width, dimensions.height)
 
     frame.add(drawPanel)
     frame.isUndecorated = true
