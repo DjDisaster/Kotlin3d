@@ -12,9 +12,7 @@ class Triangle(private var v1: Vector, private var v2: Vector, private var v3: V
         )
     }
 
-    override fun getMatrix(): Array<Array<Vector>> {
-        return arrayOf(
-            getVector()
-        )
+    override fun getMatrix(): Array<Vector> {
+        return getVector()
     }
 }

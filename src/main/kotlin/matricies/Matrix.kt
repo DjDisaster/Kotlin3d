@@ -39,6 +39,6 @@ fun defaultMatrix(): Array<DoubleArray> {
 
 interface Matrix {
 
-    fun getMatrix(): Array<Array<Vector>>
+    fun getMatrix(): Array<Vector>
 
 }

@@ -55,11 +55,13 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
 
         val cameraPosition = Vector(0.0,0.0,0.0)
 
+        var trianglesToSort = ArrayList<Triangle>()
+
         for (v in matricies) {
+            var v2 = v.getMatrix()
 
-            val matrix = v.getMatrix()
 
-            for (v2 in matrix) {
+
                 val tri = arrayOf(v2[0].copy(), v2[1].copy(), v2[2].copy())
 
                 for (index in tri.indices) {
@@ -95,12 +97,19 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
                     points[i].y += 400
 
                 }
-                drawTriangle(g, points[0], points[1], points[2])
-                triangles++
-            }
-
+                var triangle = Triangle(points[0], points[1], points[2])
+                trianglesToSort.add(triangle);
         }
-        println("Triangles: $triangles Culled: $culled")
+
+        var sortedTriangles = trianglesToSort.sortedWith(TriangleComparator())
+
+        for (triangle in sortedTriangles) {
+            val points = triangle.getMatrix();
+            drawTriangle(g, points[0], points[1], points[2])
+        }
+
+
+        println("Triangles: ${trianglesToSort.size} Culled: $culled")
     }
 
     var highest = 0;
