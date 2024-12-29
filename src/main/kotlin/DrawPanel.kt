@@ -67,7 +67,7 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
                     tri[index] = multiplyMatrix(tri[index], rotationX(theta))
                     tri[index] = multiplyMatrix(tri[index], rotationZ(theta))
                     tri[index] = multiplyMatrix(tri[index], rotationY(theta))
-                    tri[index].z += 3
+                    tri[index].z += 10
                 }
 
                 val line1 = Vector((tri[1].x - tri[0].x), (tri[1].y - tri[0].y), (tri[1].z - tri[0].z))
@@ -89,7 +89,7 @@ class DrawPanel(private var matricies: Array<Matrix>) : JPanel() {
                 for (i in tri.indices) {
                     val v3 = tri[i]
                     points[i] = multiplyMatrix(v3, projectionMatrix)
-                    points[i].multiply(500.0)
+                    points[i].multiply(400.0)
 
 
                     points[i].x += 600

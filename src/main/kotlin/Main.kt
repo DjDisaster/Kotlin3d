@@ -1,6 +1,8 @@
-import matricies.Cube
+
+import filereaders.OBJReader
 import java.awt.Color
 import java.awt.Toolkit
+import java.io.File
 import java.util.*
 import javax.swing.JFrame
 
@@ -15,8 +17,19 @@ fun main() {
 
     frame.background = Color.BLACK
 
+    val obj = {}.javaClass.getResource("axis.obj")
+    if (obj == null) {
+        println("OBJ was null.")
+        return
+    }
+    val filePath = obj.path
+    val file = File(filePath)
+    val reader = OBJReader(file)
+
+
     drawPanel = DrawPanel(
-        arrayOf(Cube(-0.5,-0.5,-0.5, 1.0))
+        reader.tris.toTypedArray()
+        //arrayOf(Triangle(-0.5,-0.5,-0.5, 1.0))
     )
 
     frame.add(drawPanel)
